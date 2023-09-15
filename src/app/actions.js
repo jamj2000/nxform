@@ -7,11 +7,9 @@ export async function userUpdate(formData) {
     const nombre = formData.get('nombre')
     const edad = formData.get('edad')
 
+    // Actualizamos usuario
     const pos = Users.findIndex ( user =>  id == user.id )
-
-    Users[pos] = { ...Users[pos], id, nombre, edad }
-
-    // console.log(Users)
+    Users[pos] = { id, nombre, edad }
 
     revalidatePath('/')
 }
@@ -21,11 +19,9 @@ export async function userCreate(formData) {
     const nombre = formData.get('nombre')
     const edad = formData.get('edad')
 
+    // Creamos usuario
     const pos = Users.length;
-    
     Users[pos] = { id, nombre, edad }
-
-    // console.log(Users)
 
     revalidatePath('/')
 }  
@@ -34,8 +30,8 @@ export async function userCreate(formData) {
 export async function userDelete(formData) {
     const id = formData.get('id')
 
+    // Eliminamos usuario
     const pos = Users.findIndex ( user =>  id == user.id )
-    console.log(pos);
     Users.splice( pos, 1 )
 
     revalidatePath('/')
