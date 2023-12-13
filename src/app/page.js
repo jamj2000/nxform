@@ -5,7 +5,7 @@ export default function Home() {
   console.log(Users)
   return (
     <main>
-      <form key={crypto.randomUUID().replaceAll("-", "")} style={{ 'padding': '30px', 'border': 'solid 1px gray', 'marginTop': '20px' }}>
+      <form id='insertar' key={crypto.randomUUID().replaceAll("-", "")} style={{ 'padding': '30px', 'border': 'solid 1px gray', 'marginTop': '20px' }}>
         <input type='hidden' name='id' defaultValue={crypto.randomUUID().replaceAll("-", "")}></input>
         <label htmlFor='nombre'>Usuario</label>
         <input type='text' id='nombre' name='nombre'></input>
