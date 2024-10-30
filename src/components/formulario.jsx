@@ -5,7 +5,7 @@ import { CircleCheck, CircleX } from 'lucide-react';
 import { toast } from 'sonner';
 
 
-export function Formulario() {
+export default function Formulario() {
 
     const [state, action, pending] = useActionState(nuevoProducto, null)
 
