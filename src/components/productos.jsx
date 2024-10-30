@@ -25,7 +25,7 @@ async function Productos({ query }) {
                         <div className='flex gap-6'>
                             <form className='flex gap-2'>
                                 <input type="hidden" name='id' value={producto.id} />
-                                <button formAction={eliminarProducto} title='ELIMINAR'>
+                                <button formAction={eliminarProducto} title='MODIFICAR'>
                                     <RefreshCw className='size-10 p-2 bg-orange-200 rounded-full hover:bg-orange-400 hover:cursor-pointer' />
                                 </button>
 

@@ -10,13 +10,18 @@ export default function Formulario() {
     const [state, action, pending] = useActionState(nuevoProducto, null)
 
     useEffect(() => {
-        if (state?.success) toast.success(state.success)
+        if (state?.success) {
+            toast.success(state.success)
+            document.getElementById('f').closest('dialog').close()
+        }
         if (state?.error) toast.error(state.error)
+ 
+
     }, [state])
 
 
     return (
-        <form action={action} >
+        <form id='f' action={action} >
             {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
                     <CircleCheck /> {state?.success}
