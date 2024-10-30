@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "@/app/globals.css";
+import { Toaster } from 'sonner';
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -13,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Formulario",
+  title: "Productos",
 };
 
 export default function RootLayout({ children }) {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans min-h-screen`}  >
         {children}
+        <Toaster position="top-right"  richColors />
       </body>
     </html>
   );
