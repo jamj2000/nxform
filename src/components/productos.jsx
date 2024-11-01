@@ -1,18 +1,22 @@
 import Link from 'next/link'
-import { obtenerProductos, eliminarProducto } from '@/lib/actions'
-import { NotebookPen, Trash } from 'lucide-react'
+import { obtenerProductos } from '@/lib/actions'
+import Eliminar from './forms/eliminar'
+import Modificar from './forms/modificar'
+import { RefreshCcw } from 'lucide-react'
 
 
 
 
 async function Productos({ query, sort }) {
 
-    const productos = await obtenerProductos(query, sort)
+    const { productos, total } = await obtenerProductos(query, sort)
     // await new Promise ( resolve => setTimeout(resolve, 2000))
 
-    return (
+    console.log('productos', productos);
 
-        <div className='flex flex-col'>
+    
+    return (
+        <div className='flex flex-col overflow-y-auto'>
             {productos
                 .map((producto) => (
                     <div key={producto.id} className='text-lg py-1 md:px-4 xl:px-8 odd:bg-slate-100 even:bg-slate-200 flex items-center justify-between'>
@@ -21,23 +25,16 @@ async function Productos({ query, sort }) {
                             {producto.nombre}
                         </Link>
 
-                        <div className='flex gap-2'>
-                            <form className='flex gap-2'>
-                                <input type="hidden" name='id' value={producto.id} />
-                                <button formAction={eliminarProducto} title='MODIFICAR'>
-                                    <NotebookPen className='size-10 p-2 rounded-full text-orange-700 bg-orange-200 hover:bg-orange-300 hover:cursor-pointer' />
-                                </button>
-
-                                <input type="hidden" name='id' value={producto.id} />
-                                <button formAction={eliminarProducto} title='ELIMINAR'>
-                                    <Trash className='size-10 p-2 rounded-full text-red-700 bg-red-200 hover:bg-red-300 hover:cursor-pointer' />
-                                </button>
-                            </form>
+                        <div className='flex gap-1'>
+                            <Modificar producto={producto} />
+                            <Eliminar producto={producto} />
                         </div>
                     </div>
+
                 ))
             }
         </div>
+
 
     )
 }

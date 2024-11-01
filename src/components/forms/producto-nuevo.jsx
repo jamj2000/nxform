@@ -1,11 +1,11 @@
 'use client'
 import { nuevoProducto } from '@/lib/actions'
 import { useActionState, useEffect } from 'react'
-import { CircleCheck, CircleX } from 'lucide-react';
+import { CircleCheck, CircleX, FilePlus, RefreshCcw } from 'lucide-react';
 import { toast } from 'sonner';
 
 
-export default function Formulario() {
+export default function ProductoNuevo() {
 
     const [state, action, pending] = useActionState(nuevoProducto, null)
 
@@ -54,9 +54,13 @@ export default function Formulario() {
                 />
 
                 <button type="submit" disabled={pending}
-                    className='col-span-2 mt-6 w-full p-3 bg-blue-200 hover:ring-2 disabled:bg-slate-200 hover:disabled:ring-0 font-bold text-center rounded-md'
+                    className='col-span-2 mt-6 w-full p-3 bg-blue-100 text-green-700 hover:bg-blue-200 focus:outline-none disabled:text-slate-500  hover:disabled:ring-0 font-bold text-center rounded-md'
                 >
-                    {pending ? 'Enviando...' : "Enviar"}
+                    {pending
+                        ? <div><RefreshCcw className='inline animate-spin' /> Guardando producto...</div>
+                        : <div><FilePlus className='inline' /> Guardar</div>
+
+                    }
                 </button>
 
             </div>
