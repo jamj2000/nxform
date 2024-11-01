@@ -5,12 +5,10 @@ import { revalidatePath } from 'next/cache';
 
 
 export async function obtenerProductos(query, sort) {
-    const sql = 'select * from productos where nombre like ? order by id desc;'
+    const sql = 'select * from productos where nombre like ? order by ' + sort;
     const values = [`%${query}%`]
     const [productos] = await mysql.query(sql, values);
     
-    console.log(productos);
-
     // Introducimos un retardo artificial
     // await new Promise(resolve => setTimeout(resolve, 2000))
 

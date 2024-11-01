@@ -8,12 +8,11 @@ function Buscar() {
 
         <Form action="" className="flex items-center gap-1">
 
-            <input name="sort" type="radio" value='ascName' className={`${classRadio} bg-[url('/icons/arrow-down-a-z.svg')]`}/>
-            <input name="sort" type="radio" value='ascTime' className={`${classRadio} bg-[url('/icons/clock-arrow-down.svg')]`}/>
-            <input name="sort" type="radio" value='desName' className={`${classRadio} bg-[url('/icons/arrow-up-z-a.svg')]`}/>
-            <input name="sort" type="radio" value='desTime' className={`${classRadio} bg-[url('/icons/clock-arrow-up.svg')]`} defaultChecked />
+            <input name="sort" type="radio" value='nombre asc' className={`${classRadio} bg-[url('/icons/arrow-down-a-z.svg')]`}/>
+            <input name="sort" type="radio" value='createdAt asc' className={`${classRadio} bg-[url('/icons/clock-arrow-down.svg')]`}/>
+            <input name="sort" type="radio" value='nombre desc' className={`${classRadio} bg-[url('/icons/arrow-up-z-a.svg')]`}/>
+            <input name="sort" type="radio" value='createdAt desc' className={`${classRadio} bg-[url('/icons/clock-arrow-up.svg')]`} defaultChecked />
   
-
 
             <input
                 name="query"   // adjuntado a la URL como parámetro de consulta 
@@ -21,8 +20,8 @@ function Buscar() {
                 className="text-black p-2 pl-10 rounded-full bg-[url('/icons/search.svg')] bg-[length:16px_16px] bg-[center_left_10px] bg-no-repeat border border-slate-300 focus:outline-blue-300"
             />
 
-            <button type="submit" value='hola' className="size-10 p-2 bg-blue-200 hover:bg-blue-300 rounded-full" title="VAMOS">
-                <ArrowRight />
+            <button type="submit" className="size-10 p-2 bg-blue-300 hover:bg-blue-400 rounded-full" title="VAMOS">
+                <ArrowRight className="text-white"/>
             </button>
         </Form>
 

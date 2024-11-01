@@ -12,32 +12,34 @@ async function PaginaInicio({ searchParams }) {
 
   // establecemos valores por defecto en caso de recibir undefined
   query ??= ''
-  sort ??= 'desTime'
+  sort ??= 'createdAt desc'
 
 
   // Introducimos un retardo artificial
   // await new Promise(resolve => setTimeout(resolve, 2000))
 
   return (
-    <div className='container mx-auto px-4 mt-20 flex flex-col gap-4'>
-      <div className='mb-10 flex flex-col items-start md:flex-row md:justify-between'>
-        <h1 className='text-2xl text-blue-400 font-bold'>
-          PRODUCTOS
-        </h1>
-        <Buscar />
+    <div className='container mx-auto px-4 pt-20 flex flex-col gap-4'>
+      <div className='flex justify-between'>
+        <h1 className='text-4xl text-blue-400 font-bold '>PRODUCTOS</h1>
+
+        <Modal
+          icon={<Plus />}
+          className={'place-self-end size-10 p-2 rounded-full text-green-700 bg-green-200 hover:bg-green-300 hover:cursor-pointer'}>
+          <Formulario />
+        </Modal>
       </div>
 
-      {/* <Modal
-        icon={<Plus />}
-        className={'place-self-end size-10 p-2 rounded-full bg-green-200 hover:bg-green-300 hover:cursor-pointer'}>
-        <Formulario />
-      </Modal> */}
+
+      {/* <div className='mb-10 flex justify-end'>
+        <Buscar />
+      </div> */}
 
       <Paginar />
       <Suspense fallback={<Fallback>Obteniendo productos ... </Fallback>}>
         <Productos query={query} sort={sort} />
       </Suspense>
-      <Paginar />
+
     </div>
   )
 }
