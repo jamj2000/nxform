@@ -4,11 +4,13 @@ import mysql from '@/lib/mysql'
 import { revalidatePath } from 'next/cache';
 
 
-export async function obtenerProductos(query) {
-    const sql = 'select * from productos where nombre like ?';
+export async function obtenerProductos(query, sort) {
+    const sql = 'select * from productos where nombre like ? order by id desc;'
     const values = [`%${query}%`]
     const [productos] = await mysql.query(sql, values);
     
+    console.log(productos);
+
     // Introducimos un retardo artificial
     // await new Promise(resolve => setTimeout(resolve, 2000))
 
@@ -19,7 +21,7 @@ export async function obtenerProductos(query) {
 export async function nuevoProducto (prevState, formData) {
     const nombre = formData.get('nombre')
     const descripcion = formData.get('descripcion')
-    const precio = formData.get('precio')
+    const precio = +formData.get('precio')
     const imagen = formData.get('imagen')
     
     const buffer = await imagen.arrayBuffer()
@@ -32,7 +34,7 @@ export async function nuevoProducto (prevState, formData) {
 
     try {
         fs.writeFileSync('public/images/' + imagen.name, bytes, 'binary')
-        const sql = 'insert into productos (nombre, descripcion, precio, imagen) values (?, ?, ?, ?)'
+        const sql = 'insert into productos (nombre, descripcion, precio, imagen) values (?, ?, ?, ?);'
         const values = [nombre, descripcion, precio, '/images/'+imagen.name];
     
         const [result, fields] = await mysql.query(sql, values)
@@ -51,7 +53,7 @@ export async function nuevoProducto (prevState, formData) {
 export async function eliminarProducto(formData) {
     const id = formData.get('id')
 
-    const sql = 'delete from productos where id = ?'
+    const sql = 'delete from productos where id = ?;'
     const values = [id]
     await mysql.query(sql, values);
 

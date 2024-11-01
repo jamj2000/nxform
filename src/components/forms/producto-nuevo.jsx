@@ -9,26 +9,26 @@ export default function Formulario() {
 
     const [state, action, pending] = useActionState(nuevoProducto, null)
 
+
     useEffect(() => {
         if (state?.success) {
             toast.success(state.success)
-            document.getElementById('f').closest('dialog').close()
+            document.getElementById('form').closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
         if (state?.error) toast.error(state.error)
- 
 
     }, [state])
 
 
     return (
-        <form id='f' action={action} >
+        <form id='form' action={action} >
             {state?.success &&
-                <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
+                <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center animate-hide'>  {/* consultar archivo tailwind.config.js */}
                     <CircleCheck /> {state?.success}
                 </p>
             }
             {state?.error &&
-                <p className='bg-red-100 text-red-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
+                <p className='bg-red-100 text-red-700 mb-2 p-3 rounded-md flex gap-2 items-center animate-hide'>  {/* consultar archivo tailwind.config.js */}
                     <CircleX /> {state?.error}
                 </p>
             }

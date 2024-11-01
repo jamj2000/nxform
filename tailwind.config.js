@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -14,8 +13,16 @@ module.exports = {
       fontFamily: {
         sans: "var(--font-geist-sans)",
         mono: "var(--font-geist-mono)",
+      },
+      animation: {
+        'hide': 'fadeOff 3s linear forwards',
+      },
+      keyframes: {
+        fadeOff: {
+           '100%': { visibility: 'hidden' },
+        }
       }
     },
   },
-  plugins: [ ],
+  plugins: [ require('daisyui') ],
 };
