@@ -11,19 +11,31 @@ body {
 main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 5px;
 }
 
 #insertar {
-    background-color: beige;
+    background-color: lightyellow;
 }
 
 label {
     margin-right: 10px;
 }
 
+form {
+    border-radius: 10px;
+    padding: 30px;
+    border: solid 1px gray;
+    margin-top: 20px;
+}
+
 input {
     display: block;
     margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    padding-inline: 10px;
+    padding-block: 5px;
 }
